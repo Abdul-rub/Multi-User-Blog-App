@@ -2,6 +2,7 @@ const express = require("express")
 const connection = require("./config/db")
 const cors = require("cors")
 const router = require("./routes/userRoutes")
+const blogrouter = require("./routes/blogRoutes")
 
 
 
@@ -19,6 +20,7 @@ app.use(cors())
 // })
 
 app.use("/user",router)
+app.use("/blog",blogrouter)
 
 
 
