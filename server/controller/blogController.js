@@ -1,6 +1,8 @@
+const { default: mongoose } = require("mongoose");
 const Blog = require("../model/blogModel")
+const User = require("../model/userModel")
 
-
+//GET ALL BLOG
 const getAllBlogs=async(req,res,next)=>{
    let blogs;
    try {
@@ -14,9 +16,19 @@ const getAllBlogs=async(req,res,next)=>{
    return res.status(200).json({blogs})
 }
 
-
+//ADD BLOG  TO SPECIFIC ID
 const addBlogs = async(req,res,next)=>{
    const {title,description,image,user}= req.body
+    let existingUser;
+    try {
+        existingUser = await User.findById(user)
+    } catch (error) {
+        return console.log(error)
+    }
+    if(!existingUser){
+        return res.status(400).json({msg:"Unable to find User by id"})
+    }
+
    const blog=  new Blog({
     title,
     description,
@@ -24,13 +36,19 @@ const addBlogs = async(req,res,next)=>{
     user
    });
    try {
-     await blog.save()
+    const session = await mongoose.startSession();
+    session.startTransaction()
+    await blog.save({session})
+    existingUser.blogs.push(blog)
+    await existingUser.save({session})
+    await session.commitTransaction()
    } catch (error) {
-    return console.log(err)
+    return res.status(500).json({msg:error})
    }
    return res.status(200).json({blog})
 }
 
+//UPDATE BLOG
 const updateBlogs= async(req,res,next)=>{
     const {title,description}= req.body
    const blogId = req.params.id;
@@ -48,8 +66,36 @@ const updateBlogs= async(req,res,next)=>{
    
 }
 
-const getById=()=>{
-
+//GET BLOG BY ID
+const getById=async(req,res,next)=>{
+   const id = req.params.id;
+   let blog;
+   try {
+     blog= await Blog.findById(id)
+   } catch (error) {
+    return console.log(error)
+   }
+   if(!blog){
+    return res.status(404).json({msg: "No Blog Found"})
+   }
+   return res.status(200).json({blog})
 }
 
-module.exports = {getAllBlogs,addBlogs,updateBlogs,getById}
+//DELETE BLOG BY ID
+const deleteBlog= async(req,res,next)=>{
+    const id = req.params.id;
+   let blog;
+   try {
+    blog = await Blog.findByIdAndRemove(id)
+   } catch (error) {
+    return console.log(error)
+   }
+   if(!blog){
+    return res.status(500).json({msg: "Unable to delete"})
+   }
+   return res.status(200).json({msg:"Deleted Successfully"})
+}
+
+
+
+module.exports = {getAllBlogs,addBlogs,updateBlogs,getById,deleteBlog}
