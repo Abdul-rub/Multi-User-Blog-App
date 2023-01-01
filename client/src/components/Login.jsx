@@ -8,7 +8,7 @@ import {
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-// import { authActions } from "../store";
+
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -18,7 +18,7 @@ const Login = () => {
     email: "",
     password: "",
   });
-  // const [isSignUp, setIsSignUp] = useState(false);
+
 
   const handleChange = (e) => {
     setInputs((state) => ({
@@ -28,40 +28,14 @@ const Login = () => {
   };
   console.log(inputs)
 
-  //Sending Request
-  // const sendRequest = async (type = "login") => {
-  //   const res = axios
-  //     .post(`http://localhost:8080/user/${type}`, {
-  //       name: inputs.name,
-  //       email: inputs.email,
-  //       password: inputs.password,
-  //     })
-  //     .catch((err) => console.log(err));
 
-  //   const data = await res.data;
-  //   return data;
-  // };
 
    const handleSubmit=(e)=>{
      e.preventDefault()
      console.log(inputs)
    }
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   console.log(inputs);
-  //   if (isSignUp) {
-  //     sendRequest("signup")
-  //       .then(() => dispatch(authActions.login()))
-  //       .then(() => navigate("/blogs"))
-  //       .then((data) => console.log(data));
-  //   } else {
-  //     sendRequest()
-  //       .then(() => dispatch(authActions.login()))
-  //       .then(() => navigate("/blogs"))
-  //       .then((data) => console.log(data));
-  //   }
-  // };
+ 
 
   return (
     <div>

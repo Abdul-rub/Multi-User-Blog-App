@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 import Signup from "./components/Signup";
 
 function App() {
-  // const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  const isLoggedIn = useSelector((state) => state.AuthReducer.isAuth);
   // console.log(isLoggedIn);
   return (
     <>

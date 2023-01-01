@@ -1,7 +1,7 @@
 import * as types from "./actiontypes";
 
 const initial = {
-  isAuth: true,
+  isAuth: false,
   isLoading: false,
   isError: false,
   data:null,
@@ -13,9 +13,9 @@ export const reducer = (state = initial, action) => {
     case types.SIGNUP_REQUEST:
       return { ...state, isLoading: true };
     case types.SIGNUP_SUCCESS:
-      return { ...state, isLoading: false, data:payload  };
+      return { ...state, isLoading: false, data:payload , isAuth:true}
     case types.SIGNUP_FAILURE:
-      return { ...state, isLoading: false, isError:true  };
+      return { ...state, isLoading: false, isError:true  }
 
       default:
             return state

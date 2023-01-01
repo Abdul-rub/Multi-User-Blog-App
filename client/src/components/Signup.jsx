@@ -8,10 +8,13 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { handleSignUp } from "../Redux/AuthReducer/action";
+import { useEffect } from "react";
+
 
 const Signup = () => {
+  const isLoggedIn = useSelector((state) => state.AuthReducer.isAuth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [inputs, setInputs] = useState({
@@ -26,13 +29,24 @@ const Signup = () => {
       [e.target.name]: e.target.value,
     }));
   };
+  console.log(inputs)
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(handleSignUp(inputs));
+ 
     console.log(inputs);
   };
-  console.log(inputs);
+
+
+   useEffect(()=>{
+    if(isLoggedIn){
+      navigate("/blogs")
+    }
+   },[isLoggedIn])
+
+
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -56,7 +70,7 @@ const Signup = () => {
             name="name"
             onChange={handleChange}
             margin="normal"
-            value={inputs.name}
+            // value={inputs.name}
             placeholder="name"
           ></TextField>
 
@@ -64,7 +78,7 @@ const Signup = () => {
             name="email"
             onChange={handleChange}
             margin="normal"
-            value={inputs.email}
+            // value={inputs.email}
             type="email"
             placeholder="Email"
           ></TextField>
@@ -73,7 +87,7 @@ const Signup = () => {
             name="password"
             onChange={handleChange}
             margin="normal"
-            value={inputs.password}
+            // value={inputs.password}
             type="password"
             placeholder="Password"
           ></TextField>
