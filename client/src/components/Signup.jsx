@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Button,
   TextField,
@@ -5,20 +6,19 @@ import {
   Box,
   inputClasses,
 } from "@mui/material";
-import React from "react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-// import { authActions } from "../store";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { handleSignUp } from "../Redux/AuthReducer/action";
 
-const Login = () => {
+const Signup = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const dispatch = useDispatch();
   const [inputs, setInputs] = useState({
+    name: "",
     email: "",
     password: "",
   });
-  // const [isSignUp, setIsSignUp] = useState(false);
 
   const handleChange = (e) => {
     setInputs((state) => ({
@@ -26,43 +26,13 @@ const Login = () => {
       [e.target.name]: e.target.value,
     }));
   };
-  console.log(inputs)
 
-  //Sending Request
-  // const sendRequest = async (type = "login") => {
-  //   const res = axios
-  //     .post(`http://localhost:8080/user/${type}`, {
-  //       name: inputs.name,
-  //       email: inputs.email,
-  //       password: inputs.password,
-  //     })
-  //     .catch((err) => console.log(err));
-
-  //   const data = await res.data;
-  //   return data;
-  // };
-
-   const handleSubmit=(e)=>{
-     e.preventDefault()
-     console.log(inputs)
-   }
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   console.log(inputs);
-  //   if (isSignUp) {
-  //     sendRequest("signup")
-  //       .then(() => dispatch(authActions.login()))
-  //       .then(() => navigate("/blogs"))
-  //       .then((data) => console.log(data));
-  //   } else {
-  //     sendRequest()
-  //       .then(() => dispatch(authActions.login()))
-  //       .then(() => navigate("/blogs"))
-  //       .then((data) => console.log(data));
-  //   }
-  // };
-
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(handleSignUp(inputs));
+    console.log(inputs);
+  };
+  console.log(inputs);
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -79,9 +49,17 @@ const Login = () => {
           borderRadius={5}
         >
           <Typography variant="h2" padding={3} textAlign={"center"}>
-            Login
+            SignUp
           </Typography>
-          
+
+          <TextField
+            name="name"
+            onChange={handleChange}
+            margin="normal"
+            value={inputs.name}
+            placeholder="name"
+          ></TextField>
+
           <TextField
             name="email"
             onChange={handleChange}
@@ -104,12 +82,15 @@ const Login = () => {
             type="submit"
             variant="contained"
             sx={{ borderRadius: 3, marginTop: 3 }}
-            color="warning">
+            color="warning"
+          >
             Submit
           </Button>
           <Button
-            onClick={() => navigate("/signup")}
-            sx={{ borderRadius: 3, marginTop: 3 }}>
+            // onClick={() => setIsSignUp(!isSignUp)}
+            sx={{ borderRadius: 3, marginTop: 3 }}
+            onClick={() => navigate("/login")}
+          >
             Change To Signup
           </Button>
         </Box>
@@ -118,4 +99,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;

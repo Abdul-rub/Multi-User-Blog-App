@@ -5,30 +5,29 @@ import BlogCard from './BlogCard'
 
 
 const Blogs = () => {
-  const [blog,setBlog]= useState()
+  const [blog,setBlog]= useState([])
 
 
   const getAllBlogs = ()=>{
     axios.get(`http://localhost:8080/blog`)
-    .then((res)=>setBlog(res.data))
+    .then((res)=>setBlog(res.data.blogs))
     .catch((err)=>console.log(err))
   }
-
-
 
 
 useEffect(()=>{
 getAllBlogs()
 },[])
+
+
 console.log(blog)
 
   return (
     <div>
      {blog && blog.map((el,i)=>{
-      return(
-        <BlogCard />
-      )
-     }) }
+      return <BlogCard description={el.description} image ={el.image} title={el.title} username={el.user.name} />
+      
+     })}
     </div>
   )
 }

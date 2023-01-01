@@ -7,10 +7,11 @@ import UserBlogs from "./components/UserBlogs";
 import BlogDetails from "./components/BlogDetails";
 import AddBlog from "./components/AddBlog";
 import { useSelector } from "react-redux";
+import Signup from "./components/Signup";
 
 function App() {
-  const isLoggedIn = useSelector(state=>state.isLoggedIn)
-  console.log(isLoggedIn)
+  // const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  // console.log(isLoggedIn);
   return (
     <>
       <header>
@@ -18,6 +19,7 @@ function App() {
       </header>
       <Routes>
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/myblogs" element={<UserBlogs />} />
         <Route path="/myblogs/:id" element={<BlogDetails />} />
