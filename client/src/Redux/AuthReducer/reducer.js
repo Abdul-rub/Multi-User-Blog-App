@@ -4,7 +4,7 @@ const initial = {
   isAuth: false,
   isLoading: false,
   isError: false,
-  data:null,
+  data: null,
 };
 
 export const reducer = (state = initial, action) => {
@@ -13,11 +13,23 @@ export const reducer = (state = initial, action) => {
     case types.SIGNUP_REQUEST:
       return { ...state, isLoading: true };
     case types.SIGNUP_SUCCESS:
-      return { ...state, isLoading: false, data:payload , isAuth:true}
+      return { ...state, isLoading: false, data: payload, isAuth: true };
     case types.SIGNUP_FAILURE:
-      return { ...state, isLoading: false, isError:true  }
+      return { ...state, isLoading: false, isError: true };
 
-      default:
-            return state
+    case types.LOGIN_REQUEST:
+      return { ...state, isLoading: true };
+    case types.LOGIN_SUCCESS:
+      localStorage.setItem("userId", JSON.stringify(payload))
+      console.log(payload)
+      return { ...state, isLoading: false, data: payload, isAuth: true };
+    case types.LOGIN_FAILURE:
+      return { ...state, isLoading: false, isError: true };
+
+      case types.LOGOUT_SUCCESS:
+        return {...state, isAuth:false, data:null}
+
+    default:
+      return state;
   }
 };

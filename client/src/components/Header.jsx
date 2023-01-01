@@ -10,15 +10,22 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { handleLogin, Logout } from "../Redux/AuthReducer/action";
 
 const Header = () => {
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
   const isLoggedIn = useSelector((state) => state.AuthReducer.isAuth);
   const [value, setValue] = useState();
   const navigate = useNavigate();
 
   console.log(isLoggedIn);
+
+
+  const handleLogOut=()=>{
+    dispatch(Logout())
+    navigate("/login")
+  }
 
   return (
     <AppBar
@@ -72,7 +79,7 @@ const Header = () => {
 
           {isLoggedIn ? (
             <Button
-              // onClick={()=>dispatch(authActions.logout())}
+              onClick={handleLogOut}
               LinkComponent={Link}
               to="/login"
               variant="contained"

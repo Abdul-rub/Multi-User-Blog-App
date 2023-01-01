@@ -6,36 +6,45 @@ import {
   inputClasses,
 } from "@mui/material";
 import React from "react";
+import { useEffect } from "react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { useNavigate } from "react-router-dom";
+import { handleLogin } from "../Redux/AuthReducer/action";
 
 const Login = () => {
+  const isLoggedIn = useSelector((state) => state.AuthReducer.isAuth);
   const navigate = useNavigate();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [inputs, setInputs] = useState({
     email: "",
     password: "",
   });
 
+   console.log(isLoggedIn)
 
+   
   const handleChange = (e) => {
     setInputs((state) => ({
       ...state,
       [e.target.name]: e.target.value,
     }));
   };
-  console.log(inputs)
+  // console.log(inputs);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(handleLogin(inputs));
+    console.log(inputs);
+  };
 
+  useEffect(()=>{
+    if(isLoggedIn){
+      navigate("/blogs")
+    }
+   },[isLoggedIn])
 
-   const handleSubmit=(e)=>{
-     e.preventDefault()
-     console.log(inputs)
-   }
-
- 
 
   return (
     <div>
@@ -55,7 +64,7 @@ const Login = () => {
           <Typography variant="h2" padding={3} textAlign={"center"}>
             Login
           </Typography>
-          
+
           <TextField
             name="email"
             onChange={handleChange}
@@ -78,12 +87,14 @@ const Login = () => {
             type="submit"
             variant="contained"
             sx={{ borderRadius: 3, marginTop: 3 }}
-            color="warning">
+            color="warning"
+          >
             Submit
           </Button>
           <Button
             onClick={() => navigate("/signup")}
-            sx={{ borderRadius: 3, marginTop: 3 }}>
+            sx={{ borderRadius: 3, marginTop: 3 }}
+          >
             Change To Signup
           </Button>
         </Box>

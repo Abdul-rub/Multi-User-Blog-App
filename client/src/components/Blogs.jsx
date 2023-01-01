@@ -1,22 +1,18 @@
 import React, { useEffect } from 'react'
-import axios from 'axios'
-import { useState } from 'react'
-import BlogCard from './BlogCard'
 
+import BlogCard from './BlogCard'
+import { useDispatch, useSelector } from 'react-redux'
+import { getAllBlogs } from '../Redux/AppReducer/action'
 
 const Blogs = () => {
-  const [blog,setBlog]= useState([])
+  const dispatch = useDispatch()
+  const blog = useSelector((state)=>state.AppReducer.data)
 
 
-  const getAllBlogs = ()=>{
-    axios.get(`http://localhost:8080/blog`)
-    .then((res)=>setBlog(res.data.blogs))
-    .catch((err)=>console.log(err))
-  }
 
 
 useEffect(()=>{
-getAllBlogs()
+  dispatch(getAllBlogs())
 },[])
 
 
