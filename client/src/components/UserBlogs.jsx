@@ -8,7 +8,7 @@ import BlogCard from './BlogCard'
 
 const UserBlogs = () => {
   const dispatch = useDispatch()
-  const blog = useSelector((state)=>state.AppReducer.data)
+  const blog = useSelector((state)=>state.AppReducer.userblog)
   console.log(blog)
 
 

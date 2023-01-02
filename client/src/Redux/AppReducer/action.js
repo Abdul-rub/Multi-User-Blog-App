@@ -18,6 +18,7 @@ export const getAllBlogs = () => (dispatch) => {
 export const getUserBlogs = () => (dispatch) => {
   dispatch({ type: types.GET_USER_BLOG_REQUEST });
   const id = localStorage.getItem("userId");
+  console.log(id)
   axios
     .get(`http://localhost:8080/blog/user/${id}`)
     .then((res) => {

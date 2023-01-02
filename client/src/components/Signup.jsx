@@ -29,7 +29,7 @@ const Signup = () => {
       [e.target.name]: e.target.value,
     }));
   };
-  console.log(inputs)
+  // console.log(inputs)
 
   const handleSubmit = (e) => {
     e.preventDefault();
