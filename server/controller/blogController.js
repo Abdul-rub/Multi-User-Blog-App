@@ -17,7 +17,7 @@ const getAllBlogs=async(req,res,next)=>{
 }
 
 //ADD BLOG  TO SPECIFIC ID
-const addBlogs = async(req,res,next)=>{
+const addBlogs = async(req,res)=>{
    const {title,description,image,user}= req.body
     let existingUser;
     try {
@@ -100,18 +100,20 @@ const deleteBlog= async(req,res,next)=>{
 
 
 
-const getByUserId = async(req,res,next)=>{
+const getByUserId = async(req,res)=>{
     const userId = req.params.id;
     let userBlogs;
     try {
         userBlogs = await User.findById(userId).populate("blogs")
+        // if(!userBlogs){
+          
+        // }
+        return res.status(200).json({blogs:userBlogs})
     } catch (error) {
-        return console.log(error)
-    }
-    if(!userBlogs){
+      console.log(error)
         return res.status(404).json({msg:"No Blog Found"})
     }
-    return res.status(200).json({blogs:userBlogs})
+    
 }
 
 
