@@ -21,7 +21,7 @@ console.log(blog)
   return (
     <div>
      {blog && blog.map((el,i)=>{
-      return <BlogCard description={el.description} image ={el.image} title={el.title} username={el.user.name} />
+      return <BlogCard key={i} description={el.description} image ={el.image} title={el.title} username={el.user.name} />
       
      })}
     </div>

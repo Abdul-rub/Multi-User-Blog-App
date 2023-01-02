@@ -1,26 +1,35 @@
 import { Box, Button, InputLabel, TextField, Typography } from "@mui/material";
 import React from "react";
 import { useState } from "react";
+import {useDispatch } from "react-redux"
+import { AddUserBlogs } from "../Redux/AppReducer/action";
 
 const labelS = { mb: 1, mt: 2, fontSize: "24x", fontWeight: "bold" };
 
 const AddBlog = () => {
+  const dispatch = useDispatch()
+
   const [inputs, setInputs] = useState({
     title: "",
     description: "",
     image: "",
+    user: JSON.parse(localStorage.getItem("userId")),
   });
+  
+  console.log(inputs.user)
 
-  const handleChange=(e)=>{
+  const handleChange = (e) => {
     setInputs((state) => ({
       ...state,
       [e.target.name]: e.target.value,
     }));
-  }
+  };
 
-  const handleSubmit=(e)=>{
-    e.preventDefault()
-  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(AddUserBlogs(inputs))
+    console.log(inputs);
+  };
 
   return (
     <div>
@@ -46,13 +55,34 @@ const AddBlog = () => {
           >
             Post Your Blog
           </Typography>
-          <InputLabel name="title" onChange={handleChange} value={inputs.title} sx={labelS}>Title</InputLabel>
-          <TextField  margin="normal" variant="outlined" />
-          <InputLabel  name="description" onChange={handleChange} value={inputs.description} sx={labelS}>Description</InputLabel>
-          <TextField margin="normal" variant="outlined" />
-          <InputLabel name="image" onChange={handleChange} value={inputs.image} sx={labelS}>Image</InputLabel>
-          <TextField margin="normal" variant="outlined" />
-          <Button type="submit">Submit</Button>
+          <InputLabel sx={labelS}>Title</InputLabel>
+          <TextField
+            margin="normal"
+            variant="outlined"
+            type="text"
+            name="title"
+            value={inputs.title}
+            onChange={handleChange}
+          />
+          <InputLabel sx={labelS}>Description</InputLabel>
+          <TextField
+            margin="normal"
+            variant="outlined"
+            name="description"
+            value={inputs.description}
+            onChange={handleChange}
+          />
+          <InputLabel type="text" sx={labelS}>
+            Image
+          </InputLabel>
+          <TextField
+            margin="normal"
+            variant="outlined"
+            name="image"
+            onChange={handleChange}
+            value={inputs.image}
+          />
+          <Button sx={{mt:2, borderRadius:4}} variant="contained" type="submit">Submit</Button>
         </Box>
       </form>
     </div>

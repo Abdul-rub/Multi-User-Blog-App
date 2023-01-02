@@ -25,7 +25,7 @@ export const handleLogin = (payload) => (dispatch) => {
 
       .then((res) => {
         dispatch({ type: types.LOGIN_SUCCESS, payload: res.data.user._id });
-        console.log(res.data);
+        console.log(res.data,"userdata");
       })
       .catch((err) => {
         dispatch({ type: types.LOGIN_FAILURE, payload: err });
