@@ -12,6 +12,7 @@ import React from "react";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import {useNavigate} from "react-router-dom"
+import axios from "axios";
 
 const BlogCard = ({ title, description, image, username, isUser, id }) => {
   console.log(title, isUser);
@@ -22,7 +23,18 @@ const handleEdit=()=>{
   navigate(`/myblogs/${id}`)
 }
 
+const deleteRequest = async()=>{
+  const res = await axios
+  .delete(`http://localhost:8080/blog/${id}`)
+  .catch((err)=>console.log(err))
+  const data = await res.data
+  return data;
+}
+
+
 const handleDelete=()=>{
+  deleteRequest()
+  .then(()=>navigate("/blogs"))
   
 }
 
@@ -61,6 +73,8 @@ const handleDelete=()=>{
       />
       <CardMedia component="img" height="194" image={image} alt="Paella dish" />
       <CardContent>
+        <hr/>
+        <br/>
         <Typography variant="body2" color="text.secondary">
           <b>{username}</b>
           {":"}

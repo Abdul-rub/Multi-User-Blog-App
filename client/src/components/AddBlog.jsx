@@ -2,11 +2,13 @@ import { Box, Button, InputLabel, TextField, Typography } from "@mui/material";
 import React from "react";
 import { useState } from "react";
 import {useDispatch } from "react-redux"
+import { useNavigate } from "react-router-dom";
 import { AddUserBlogs } from "../Redux/AppReducer/action";
 
 const labelS = { mb: 1, mt: 2, fontSize: "24x", fontWeight: "bold" };
 
 const AddBlog = () => {
+  const navigate = useNavigate()
   const dispatch = useDispatch()
 
   const [inputs, setInputs] = useState({
@@ -28,6 +30,7 @@ const AddBlog = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(AddUserBlogs(inputs))
+    navigate("/myblogs")
     console.log(inputs);
   };
 

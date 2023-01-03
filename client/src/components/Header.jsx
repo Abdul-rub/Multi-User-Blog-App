@@ -16,7 +16,7 @@ import { handleLogin, Logout } from "../Redux/AuthReducer/action";
 const Header = () => {
   const dispatch = useDispatch()
   const isLoggedIn = useSelector((state) => state.AuthReducer.isAuth);
-  const [value, setValue] = useState();
+  const [value, setValue] = useState(0);
   const navigate = useNavigate();
 
   console.log(isLoggedIn);
