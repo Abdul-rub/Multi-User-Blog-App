@@ -22,7 +22,7 @@ const Login = () => {
     password: "",
   });
 
-   console.log(isLoggedIn)
+  //  console.log(isLoggedIn)
 
    
   const handleChange = (e) => {

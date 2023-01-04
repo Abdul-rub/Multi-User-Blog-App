@@ -7,7 +7,7 @@ import BlogCard from "./BlogCard";
 const UserBlogs = () => {
   const dispatch = useDispatch();
   const blog = useSelector((state) => state.AppReducer.userblog);
-  console.log(blog, "blog");
+  // console.log(blog, "blog");
 
   useEffect(() => {
     dispatch(getUserBlogs());

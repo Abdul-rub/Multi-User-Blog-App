@@ -20,11 +20,11 @@ export const getAllBlogs = () => (dispatch) => {
 export const getUserBlogs = () => (dispatch) => {
   dispatch({ type: types.GET_USER_BLOG_REQUEST });
   const id = JSON.parse(localStorage.getItem("userId"));
-  console.log(id,"gettig useer id")
+  // console.log(id,"gettig useer id")
   axios
     .get(`http://localhost:8080/blog/user/${id}`)
     .then((res) => {
-      console.log(res.data,"ffff")
+      // console.log(res.data,"ffff")
       dispatch({ type: types.GET_USER_BLOG_SUCCESS, payload: res.data.blogs.blogs });
     })
     .catch((err) => {
@@ -39,7 +39,7 @@ export const AddUserBlogs = (payload) => (dispatch) => {
   axios
     .post(`http://localhost:8080/blog/add`, payload)
     .then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       dispatch({ type: types.ADD_USER_BLOG_SUCCESS, payload: res.data });
     })
     .catch((err) => {

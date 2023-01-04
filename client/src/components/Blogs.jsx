@@ -8,7 +8,7 @@ const Blogs = () => {
   const dispatch = useDispatch();
   const blog = useSelector((state) => state.AppReducer.data);
 
-  console.log(blog)
+  // console.log(blog)
 
   useEffect(() => {
     dispatch(getAllBlogs());

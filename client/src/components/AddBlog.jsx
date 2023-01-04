@@ -18,7 +18,7 @@ const AddBlog = () => {
     user: JSON.parse(localStorage.getItem("userId")),
   });
   
-  console.log(inputs.user)
+  // console.log(inputs.user)
 
   const handleChange = (e) => {
     setInputs((state) => ({
@@ -31,7 +31,7 @@ const AddBlog = () => {
     e.preventDefault();
     dispatch(AddUserBlogs(inputs))
     navigate("/myblogs")
-    console.log(inputs);
+    // console.log(inputs);
   };
 
   return (

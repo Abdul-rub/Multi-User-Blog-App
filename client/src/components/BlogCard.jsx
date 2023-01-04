@@ -15,7 +15,7 @@ import {useNavigate} from "react-router-dom"
 import axios from "axios";
 
 const BlogCard = ({ title, description, image, username, isUser, id }) => {
-  console.log(title, isUser);
+  // console.log(title, isUser);
 
 const navigate= useNavigate()
 

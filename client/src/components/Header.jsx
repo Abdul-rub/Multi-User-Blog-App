@@ -19,7 +19,7 @@ const Header = () => {
   const [value, setValue] = useState(0);
   const navigate = useNavigate();
 
-  console.log(isLoggedIn);
+  // console.log(isLoggedIn);
 
 
   const handleLogOut=()=>{
