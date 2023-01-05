@@ -13,6 +13,7 @@ export const reducer = (state = initial, action) => {
     case types.SIGNUP_REQUEST:
       return { ...state, isLoading: true };
     case types.SIGNUP_SUCCESS:
+      localStorage.setItem("userId", JSON.stringify(payload))
       return { ...state, isLoading: false, data: payload, isAuth: true };
     case types.SIGNUP_FAILURE:
       return { ...state, isLoading: false, isError: true };
@@ -26,7 +27,7 @@ export const reducer = (state = initial, action) => {
       return { ...state, isLoading: false, isError: true };
 
       case types.LOGOUT_SUCCESS:
-        localStorage.removeItem("userId",payload)
+        // localStorage.clear();
         return {...state, isAuth:false, data:null}
 
     default:

@@ -8,7 +8,7 @@ export const handleSignUp = (payload) => (dispatch) => {
     .post(`http://localhost:8080/user/signup`, payload)
     //    .then((res)=>console.log(res))
     .then((res) => {
-      dispatch({ type: types.SIGNUP_SUCCESS, payload: res.data });
+      dispatch({ type: types.SIGNUP_SUCCESS, payload: res.data.user._id });
     })
     .catch((err) => {
       dispatch({ type: types.SIGNUP_FAILURE, payload: err });

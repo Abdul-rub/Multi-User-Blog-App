@@ -9,7 +9,7 @@ const labelS = { mb: 1, mt: 2, fontSize: "24x", fontWeight: "bold" };
 const BlogDetails = () => {
   const [blog, setBlog] = useState();
   const id = useParams().id;
-  console.log(id);
+  // console.log(id);
   const [inputs, setInputs] = useState({});
 
   
@@ -59,7 +59,8 @@ const BlogDetails = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(inputs)
-    updateRequest().then((data)=>console.log(data))
+    updateRequest()
+    .then((data)=>console.log(data))
   };
 
 

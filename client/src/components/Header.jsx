@@ -11,7 +11,7 @@ import {
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { handleLogin, Logout } from "../Redux/AuthReducer/action";
+import {  Logout } from "../Redux/AuthReducer/action";
 
 const Header = () => {
   const dispatch = useDispatch()
@@ -23,6 +23,7 @@ const Header = () => {
 
 
   const handleLogOut=()=>{
+    localStorage.clear();
     dispatch(Logout())
     navigate("/login")
   }
