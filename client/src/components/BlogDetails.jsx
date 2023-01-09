@@ -1,16 +1,20 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Box, Button, InputLabel, TextField, Typography } from "@mui/material";
 import { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { EditUserBlog } from "../Redux/AppReducer/action";
 const labelS = { mb: 1, mt: 2, fontSize: "24x", fontWeight: "bold" };
 
 const BlogDetails = () => {
   const [blog, setBlog] = useState();
-  const id = useParams().id;
+  const {id} = useParams()
   // console.log(id);
   const [inputs, setInputs] = useState({});
+  const dispatch = useDispatch()
+  const navigate= useNavigate()
 
   
   const handleChange = (e) => {
@@ -36,31 +40,26 @@ const BlogDetails = () => {
       setInputs({
         title: data.blog.title,
         description: data.blog.description,
-        // image: data.blog.image
       })
     })
   },[id])
 
-   const updateRequest = async ()=>{
-    const res = axios.put(`http://localhost:8080/blog/update/${id}`,{
-      title : inputs.title,
-      description: inputs.description
-    }).catch((err)=>console.log(err))
+  //  const updateRequest = async ()=>{
+  //   const res = axios.put(`http://localhost:8080/blog/update/${id}`,{
+  //     title : inputs.title,
+  //     description: inputs.description
+  //   }).catch((err)=>console.log(err))
 
-    const data = await res.data
-    return data
-   }
+  //   const data = await res.data
+  //   return data
+  //  }
    
-
-  // console.log(blog);
-  // console.log(blog.title)
-  // console.log(blog.image)
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(inputs)
-    updateRequest()
-    .then((data)=>console.log(data))
+    // console.log(inputs)
+    dispatch(EditUserBlog(id,inputs))
+    navigate("/blogs")
   };
 
 

@@ -24,6 +24,7 @@ export const handleLogin = (payload) => (dispatch) => {
       // .then((res) => console.log(res.data.user._id))
 
       .then((res) => {
+        
         dispatch({ type: types.LOGIN_SUCCESS, payload: res.data.user._id });
         console.log(res.data,"userdata");
       })

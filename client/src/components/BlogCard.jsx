@@ -11,32 +11,33 @@ import {
 import React from "react";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import axios from "axios";
+import { deleteRequest } from "../Redux/AppReducer/action";
 
 const BlogCard = ({ title, description, image, username, isUser, id }) => {
   // console.log(title, isUser);
+  const dispatch = useDispatch();
 
-const navigate= useNavigate()
+  const navigate = useNavigate();
 
-const handleEdit=()=>{
-  navigate(`/myblogs/${id}`)
-}
+  const handleEdit = () => {
+    navigate(`/myblogs/${id}`);
+  };
 
-const deleteRequest = async()=>{
-  const res = await axios
-  .delete(`http://localhost:8080/blog/${id}`)
-  .catch((err)=>console.log(err))
-  const data = await res.data
-  return data;
-}
+  // const deleteRequest = async()=>{
+  //   const res = await axios
+  //   .delete(`http://localhost:8080/blog/${id}`)
+  //   .catch((err)=>console.log(err))
+  //   const data = await res.data
+  //   return data;
+  // }
 
-
-const handleDelete=()=>{
-  deleteRequest()
-  .then(()=>navigate("/blogs"))
-  
-}
+  const handleDelete = () => {
+    dispatch(deleteRequest(id))
+    .then(() => navigate("/blogs"));
+  };
 
   return (
     <Card
@@ -53,7 +54,7 @@ const handleDelete=()=>{
     >
       {isUser && (
         <Box display="flex">
-          <IconButton onClick={handleEdit} sx={{marginLeft:"auto"}}>
+          <IconButton onClick={handleEdit} sx={{ marginLeft: "auto" }}>
             <ModeEditIcon />
           </IconButton>
           <IconButton onClick={handleDelete}>
@@ -73,8 +74,8 @@ const handleDelete=()=>{
       />
       <CardMedia component="img" height="194" image={image} alt="Paella dish" />
       <CardContent>
-        <hr/>
-        <br/>
+        <hr />
+        <br />
         <Typography variant="body2" color="text.secondary">
           <b>{username}</b>
           {":"}

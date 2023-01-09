@@ -1,7 +1,8 @@
 import * as types from "./actiontypes";
+const accesstoken = localStorage.getItem("userId")
 
 const initial = {
-  isAuth: false,
+  isAuth: accesstoken?true:false,
   isLoading: false,
   isError: false,
   data: null,

@@ -49,3 +49,27 @@ export const AddUserBlogs = (payload) => (dispatch) => {
 
 
 //UPDATE BLOG OF USER
+
+export const EditUserBlog=(id,params)=>(dispatch)=>{
+  dispatch({type:types.EDIT_USER_BLOG_REQUEST});
+  return axios.patch(`http://localhost:8080/blog/update/${id}`,params)
+  .then((res)=>{
+    return dispatch({type:types.EDIT_USER_BLOG_SUCCESS, payload:res.data});
+  })
+  .catch((err)=>{
+    return dispatch({type:types.EDIT_USER_BLOG_FAILURE, payload:err})
+  })
+}
+
+
+//DELETE REQUEST
+export const deleteRequest = (id)=>(dispatch)=>{
+   dispatch({type:types.DELETE_USER_BLOG_REQUEST});
+   return axios.delete(`http://localhost:8080/blog/${id}`)
+   .then((res)=>{
+    return dispatch({type:types.DELETE_USER_BLOG_SUCCESS})
+   })
+   .catch((err)=>{
+    return dispatch({type:types.DELETE_USER_BLOG_FAILURE})
+   })
+}

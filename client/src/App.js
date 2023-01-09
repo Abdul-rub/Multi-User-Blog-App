@@ -15,13 +15,15 @@ function App() {
   const dispatch = useDispatch()
   let isLoggedIn = useSelector((state) => state.AuthReducer.isAuth);
   console.log(isLoggedIn);
+ 
 
-  // useEffect(()=>{
-  //  if(localStorage.getItem("userId")){
-  //   isLoggedIn=true;
-  //  }
+  useEffect(()=>{
+    const accessToken = localStorage.getItem('userId');
+    if(accessToken){
+      dispatch(handleLogin(accessToken))
+    }
    
-  // },[])
+  },[dispatch])
 
   return (
     <>
@@ -40,7 +42,7 @@ function App() {
             <Route path="/blogs" element={<Blogs />} />
             <Route path="/myblogs" element={<UserBlogs />} />
             <Route path="/myblogs/:id" element={<BlogDetails />} />
-            <Route path="/blogs/add" element={<AddBlog />} />{" "}
+            <Route path="/blogs/add" element={<AddBlog />} />
           </>
         )}
       </Routes>
