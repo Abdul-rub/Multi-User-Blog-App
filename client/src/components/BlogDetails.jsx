@@ -26,7 +26,7 @@ const BlogDetails = () => {
 
   const fetchDetails = async () => {
   const res = await axios
-      .get(`http://localhost:8080/blog/${id}`)
+      .get(`https://blogapp-0p1o.onrender.com/blog/${id}`)
       // .catch((err) => console.log(err));
       const data = await res.data;
       return data;

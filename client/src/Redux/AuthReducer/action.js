@@ -5,7 +5,7 @@ import axios from "axios";
 export const handleSignUp = (payload) => (dispatch) => {
   dispatch({ type: types.SIGNUP_REQUEST });
   axios
-    .post(`http://localhost:8080/user/signup`, payload)
+    .post(`https://blogapp-0p1o.onrender.com/user/signup`, payload)
     //    .then((res)=>console.log(res))
     .then((res) => {
       dispatch({ type: types.SIGNUP_SUCCESS, payload: res.data.user._id });
@@ -20,7 +20,7 @@ export const handleLogin = (payload) => (dispatch) => {
   dispatch({ type: types.LOGIN_REQUEST });
   return (
     axios
-      .post(`http://localhost:8080/user/login`, payload)
+      .post(`https://blogapp-0p1o.onrender.com/user/login`, payload)
       // .then((res) => console.log(res.data.user._id))
 
       .then((res) => {
