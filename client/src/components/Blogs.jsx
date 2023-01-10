@@ -12,7 +12,7 @@ const Blogs = () => {
 
   useEffect(() => {
     dispatch(getAllBlogs());
-  }, []);
+  }, [dispatch]);
 
   // console.log(blog);
   //  const isUser = JSON.parse(localStorage.getItem("userId"))

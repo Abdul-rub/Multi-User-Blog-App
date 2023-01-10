@@ -11,7 +11,6 @@ const labelS = { mb: 1, mt: 2, fontSize: "24x", fontWeight: "bold" };
 const BlogDetails = () => {
   const [blog, setBlog] = useState();
   const {id} = useParams()
-  // console.log(id);
   const [inputs, setInputs] = useState({});
   const dispatch = useDispatch()
   const navigate= useNavigate()
@@ -28,7 +27,7 @@ const BlogDetails = () => {
   const fetchDetails = async () => {
   const res = await axios
       .get(`http://localhost:8080/blog/${id}`)
-      .catch((err) => console.log(err));
+      // .catch((err) => console.log(err));
       const data = await res.data;
       return data;
   };
@@ -85,7 +84,7 @@ const BlogDetails = () => {
             variant="h2"
             textAlign={"center"}
           >
-            Post Your Blog
+            Edit Your Blog
           </Typography>
           <InputLabel sx={labelS}>Title</InputLabel>
           <TextField

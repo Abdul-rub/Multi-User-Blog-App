@@ -50,16 +50,35 @@ export const AddUserBlogs = (payload) => (dispatch) => {
 
 //UPDATE BLOG OF USER
 
-export const EditUserBlog=(id,params)=>(dispatch)=>{
+// export const EditUserBlog=(id,payload)=>(dispatch)=>{
+//   dispatch({type:types.EDIT_USER_BLOG_REQUEST});
+//   return axios.patch(`http://localhost:8080/blog/update/${id}`,payload)
+//   .then((res)=>{
+//     // console.log(res.data)
+//     return dispatch({type:types.EDIT_USER_BLOG_SUCCESS, payload:res.data});
+//   })
+//   .catch((err)=>{
+//     return dispatch({type:types.EDIT_USER_BLOG_FAILURE, payload:err})
+//   })
+// }
+
+export const EditUserBlog=(id,payload)=>(dispatch)=>{
   dispatch({type:types.EDIT_USER_BLOG_REQUEST});
-  return axios.patch(`http://localhost:8080/blog/update/${id}`,params)
+  return fetch(`http://localhost:8080/blog/update/${id}`,{
+    method:"PATCH",
+    body: JSON.stringify(payload),
+    headers:{"content-type": "application/json"} 
+  })
+  .then((res)=>res.json())
   .then((res)=>{
+    // console.log(res.data)
     return dispatch({type:types.EDIT_USER_BLOG_SUCCESS, payload:res.data});
   })
   .catch((err)=>{
     return dispatch({type:types.EDIT_USER_BLOG_FAILURE, payload:err})
   })
 }
+
 
 
 //DELETE REQUEST
