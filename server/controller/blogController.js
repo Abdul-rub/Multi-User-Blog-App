@@ -49,25 +49,27 @@ const addBlogs = async(req,res)=>{
 }
 
 //UPDATE BLOG
-const updateBlogs= async(req,res,next)=>{
+const updateBlogs= async(req,res)=>{
     const {title,description}= req.body
    const blogId = req.params.id;
    let blog;
    try {
-    blog = await Blog.findByIdAndUpdate(blogId,{title,description})
+    blog = await Blog.findByIdAndUpdate({_id:blogId},{$set:{title,description}})
+    return res.status(200).json({blog})
+    // console.log(blog)
    } catch (error) {
      return console.log(error)
    }
 
-   if(!blog){
-    return res.status(500).json({msg:"Unable to update Blog"})
-   }
-   return res.status(200).json({blog})
+//    if(!blog){
+//     return res.status(500).json({msg:"Unable to update Blog"})
+//    }
+//    return res.status(200).json({blog})
    
 }
 
 //GET BLOG BY ID
-const getById=async(req,res,next)=>{
+const getById=async(req,res)=>{
    const id = req.params.id;
    let blog;
    try {
@@ -99,7 +101,7 @@ const deleteBlog= async(req,res,next)=>{
 }
 
 
-
+//GET 
 const getByUserId = async(req,res)=>{
     const userId = req.params.id;
     let userBlogs;

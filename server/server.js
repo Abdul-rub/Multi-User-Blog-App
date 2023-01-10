@@ -14,11 +14,6 @@ app.use(cors())
 
 
 
-
-// app.use('/',(req,res)=>{
-//    res.send("Hellow to HomePage")
-// })
-
 app.use("/user",router)
 app.use("/blog",blogrouter)
 
