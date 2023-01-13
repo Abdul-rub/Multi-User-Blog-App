@@ -36,7 +36,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(handleLogin(inputs));
-    console.log(inputs);
+    // console.log(inputs);
   };
 
   useEffect(()=>{

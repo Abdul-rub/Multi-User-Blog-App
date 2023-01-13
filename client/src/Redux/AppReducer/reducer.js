@@ -4,7 +4,7 @@ const initial = {
   isLoading: false,
   isError: false,
   data: [],
-  userblog:[]
+  userblog: [],
 };
 
 export const reducer = (state = initial, action) => {
@@ -18,22 +18,19 @@ export const reducer = (state = initial, action) => {
     case types.GET_ALL_BLOG_FAILURE:
       return { ...state, isError: true, data: [] };
 
-      case types.GET_USER_BLOG_REQUEST:
-        return { ...state, isLoading: true };
-      case types.GET_USER_BLOG_SUCCESS:
-        return { ...state, isLoading: false, userblog: payload };
-      case types.GET_USER_BLOG_FAILURE:
-        return { ...state, isError: true, userblog: [] };
+    case types.GET_USER_BLOG_REQUEST:
+      return { ...state, isLoading: true };
+    case types.GET_USER_BLOG_SUCCESS:
+      return { ...state, isLoading: false, userblog: payload };
+    case types.GET_USER_BLOG_FAILURE:
+      return { ...state, isError: true, userblog: [] };
 
-      //   case types.ADD_USER_BLOG_REQUEST:
-      //   return { ...state, isLoading: true };
-      // case types.ADD_USER_BLOG_SUCCESS:
-      //   return { ...state, isLoading: false, userblog: payload };
-      // case types.ADD_USER_BLOG_FAILURE:
-      //   return { ...state, isError: true, userblog: [] };
-
-
-
+    case types.ADD_USER_BLOG_REQUEST:
+      return { ...state, isLoading: true };
+    case types.ADD_USER_BLOG_SUCCESS:
+      return { ...state, isLoading: false, userblog: payload, data: payload };
+    case types.ADD_USER_BLOG_FAILURE:
+      return { ...state, isError: true, userblog: [] };
 
     default:
       return state;

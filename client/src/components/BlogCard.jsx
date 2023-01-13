@@ -26,13 +26,6 @@ const BlogCard = ({ title, description, image, username, isUser, id }) => {
     navigate(`/myblogs/${id}`);
   };
 
-  // const deleteRequest = async()=>{
-  //   const res = await axios
-  //   .delete(`http://localhost:8080/blog/${id}`)
-  //   .catch((err)=>console.log(err))
-  //   const data = await res.data
-  //   return data;
-  // }
 
   const handleDelete = () => {
     dispatch(deleteRequest(id))
@@ -42,10 +35,7 @@ const BlogCard = ({ title, description, image, username, isUser, id }) => {
   return (
     <Card
       sx={{
-        width: "40%",
-        margin: "auto",
         mt: 2,
-        padding: 2,
         boxShadow: "5px 5px 10px #ccc",
         ":hover": {
           boxShadow: "10px 10px 20px #ccc",
@@ -72,7 +62,7 @@ const BlogCard = ({ title, description, image, username, isUser, id }) => {
         title={title}
         subheader="September 14, 2016"
       />
-      <CardMedia component="img" height="194" image={image} alt="Paella dish" />
+      <CardMedia component="img" height="194" image={image} alt="images" />
       <CardContent>
         <hr />
         <br />

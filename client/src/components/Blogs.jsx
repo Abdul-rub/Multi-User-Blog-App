@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-
+import {SimpleGrid} from"@chakra-ui/react"
 import BlogCard from "./BlogCard";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllBlogs } from "../Redux/AppReducer/action";
@@ -12,7 +12,7 @@ const Blogs = () => {
 
   useEffect(() => {
     dispatch(getAllBlogs());
-  }, [dispatch]);
+  }, []);
 
   // console.log(blog);
   //  const isUser = JSON.parse(localStorage.getItem("userId"))
@@ -22,7 +22,9 @@ const Blogs = () => {
   //  console.log(isData)
 
   return (
-    <div>
+    <SimpleGrid columns={[1, 2, 3]} borderRadius={'3xl'} spacing='20px' p={'1rem'} 
+// style={{display:'grid', gridTemplateColumns:"repeat(4,1fr)" , gap:"15px", padding:"1rem"}}
+>
       {blog &&
         blog.map((el, i) => {
           // console.log(el.user._id)
@@ -38,7 +40,7 @@ const Blogs = () => {
             />
           );
         })}
-    </div>
+    </SimpleGrid>
   );
 };
 

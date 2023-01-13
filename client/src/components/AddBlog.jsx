@@ -1,13 +1,15 @@
 import { Box, Button, InputLabel, TextField, Typography } from "@mui/material";
 import React from "react";
+import { useEffect } from "react";
 import { useState } from "react";
-import {useDispatch } from "react-redux"
+import {useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom";
 import { AddUserBlogs } from "../Redux/AppReducer/action";
 
 const labelS = { mb: 1, mt: 2, fontSize: "24x", fontWeight: "bold" };
 
 const AddBlog = () => {
+  const isLoggedIn = useSelector((state) => state.AuthReducer.isAuth);
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
@@ -26,13 +28,16 @@ const AddBlog = () => {
       [e.target.name]: e.target.value,
     }));
   };
+   
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(AddUserBlogs(inputs))
-    navigate("/myblogs")
+    // navigate("/myblogs")
     // console.log(inputs);
   };
+
 
   return (
     <div>

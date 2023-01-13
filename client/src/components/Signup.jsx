@@ -35,7 +35,7 @@ const Signup = () => {
     e.preventDefault();
     dispatch(handleSignUp(inputs));
  
-    console.log(inputs);
+    // console.log(inputs);
   };
 
 
