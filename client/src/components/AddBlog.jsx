@@ -31,11 +31,19 @@ const AddBlog = () => {
    
 
 
-  const handleSubmit = (e) => {
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //  dispatch(AddUserBlogs(inputs))
+  //   .then(()=>navigate("/blogs"))
+  // };
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(AddUserBlogs(inputs))
-    // navigate("/myblogs")
-    // console.log(inputs);
+    try {
+      await dispatch(AddUserBlogs(inputs))
+      navigate("/blogs")
+    } catch (error) {
+      console.error(error)
+    }
   };
 
 

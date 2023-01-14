@@ -47,9 +47,8 @@ const BlogDetails = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(inputs)
     dispatch(EditUserBlog(id,inputs))
-    navigate("/blogs")
+    .then(()=>navigate("/blogs"))
   };
 
 
@@ -66,8 +65,7 @@ const BlogDetails = () => {
           margin={"auto"}
           display="flex"
           flexDirection={"column"}
-          width={"80%"}
-        >
+          width={"80%"}>
           <Typography
             fontWeight={"bold"}
             padding={3}

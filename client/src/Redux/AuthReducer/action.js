@@ -1,5 +1,7 @@
 import * as types from "./actiontypes";
+
 import axios from "axios";
+import { GET_ALL_BLOG_SUCCESS } from "../AppReducer/actiontypes";
 
 //SIGN_UP
 export const handleSignUp = (payload) => (dispatch) => {
@@ -26,7 +28,8 @@ export const handleLogin = (payload) => (dispatch) => {
       .then((res) => {
         
         dispatch({ type: types.LOGIN_SUCCESS, payload: res.data.user._id });
-        console.log(res.data,"userdata");
+        // dispatch({ type: GET_ALL_BLOG_SUCCESS, payload: res.data.blogs });
+        // console.log(res.data,"userdata");
       })
       .catch((err) => {
         dispatch({ type: types.LOGIN_FAILURE, payload: err });

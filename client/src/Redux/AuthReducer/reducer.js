@@ -28,7 +28,7 @@ export const reducer = (state = initial, action) => {
       return { ...state, isLoading: false, isError: true };
 
       case types.LOGOUT_SUCCESS:
-        // localStorage.clear();
+
         return {...state, isAuth:false, data:null}
 
     default:

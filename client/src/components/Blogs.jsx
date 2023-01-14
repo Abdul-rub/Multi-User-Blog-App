@@ -11,13 +11,11 @@ const Blogs = () => {
   const dispatch = useDispatch();
   const blog = useSelector((state) => state.AppReducer.data);
   const isLoading = useSelector((state) => state.AppReducer.isLoading);
-  console.log(isLoading);
-
-  // console.log(blog)
 
   useEffect(() => {
-    dispatch(getAllBlogs());
-  }, [dispatch]);
+    dispatch(getAllBlogs())
+    },[dispatch]);
+
 
   return (
     <>
@@ -40,21 +38,23 @@ const Blogs = () => {
           spacing="20px"
           p={"1rem"}
         >
-          {blog.map((el, i) => {
-            return (
-              <BlogCard
-                id={el._id}
-                isUser={
-                  JSON.parse(localStorage.getItem("userId")) === el.user._id
-                }
-                key={i}
-                description={el.description}
-                image={el.image}
-                title={el.title}
-                username={el.user.name}
-              />
-            );
-          })}
+          {blog &&
+            blog.length !== 0 &&
+            blog.map((el, i) => {
+              return (
+                <BlogCard
+                  id={el._id}
+                  isUser={
+                    JSON.parse(localStorage.getItem("userId")) === el.user._id
+                  }
+                  key={i}
+                  description={el.description}
+                  image={el.image}
+                  title={el.title}
+                  username={el.user.name}
+                />
+              );
+            })}
         </SimpleGrid>
       )}
     </>

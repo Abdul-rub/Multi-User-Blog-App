@@ -18,7 +18,6 @@ import { deleteRequest } from "../Redux/AppReducer/action";
 const BlogCard = ({ title, description, image, username, isUser, id }) => {
   // console.log(title, isUser);
   const dispatch = useDispatch();
-
   const navigate = useNavigate();
 
   const handleEdit = () => {
@@ -28,7 +27,7 @@ const BlogCard = ({ title, description, image, username, isUser, id }) => {
 
   const handleDelete = () => {
     dispatch(deleteRequest(id))
-    .then(() => navigate("/blogs"));
+    .then(() => navigate("/myblogs"));
   };
 
   return (

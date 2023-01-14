@@ -10,22 +10,26 @@ import { useDispatch, useSelector } from "react-redux";
 import Signup from "./components/Signup";
 import { useEffect } from "react";
 import { handleLogin } from "./Redux/AuthReducer/action";
-import Error from "./components/Error";
 
+import PrivateRoute from "./components/PrivateRoute";
+import ErrorPage from "./components/Error";
 
 function App() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   let isLoggedIn = useSelector((state) => state.AuthReducer.isAuth);
-  console.log(isLoggedIn);
- 
+  console.log(isLoggedIn, "Bye");
 
-  useEffect(()=>{
-    const accessToken = localStorage.getItem('userId');
-    if(accessToken){
-      dispatch(handleLogin(accessToken))
+  useEffect(() => {
+    const accessToken = localStorage.getItem("userId");
+    if (accessToken) {
+      dispatch(handleLogin(accessToken));
     }
-   
-  },[dispatch])
+  }, [dispatch]);
+
+  // if (isLoggedIn) {
+  //   console.log("Me ninja hatori");
+  //   navigate("/blogs");
+  // }
 
   return (
     <>
@@ -33,21 +37,16 @@ function App() {
         <Header />
       </header>
       <Routes>
-        {!isLoggedIn ? ( 
-          <>
-          <Route path="/login" element={<Login />} /> 
-          <Route path="/signup" element={<Signup />} />
-          </>
-        ) : (
-          <>
-          
-            <Route path="/blogs" element={<Blogs />} />
-            <Route path="/myblogs" element={<UserBlogs />} />
-            <Route path="/myblogs/:id" element={<BlogDetails />} />
-            <Route path="/blogs/add" element={<AddBlog />} />
-            <Route path="/error" element={<Error/>}/>
-          </>
-        )}
+      
+        <Route path="/login" element={<PrivateRoute><Login /></PrivateRoute>} />
+        <Route path="/signup" element={<Signup />} />
+        
+
+        <Route path="/blogs" element={<Blogs />} />
+        <Route path="/myblogs" element={<UserBlogs />} />
+        <Route path="/myblogs/:id" element={<BlogDetails />} />
+        <Route path="/blogs/add" element={<AddBlog />} />
+        <Route path="/error" element={<ErrorPage />} />
       </Routes>
     </>
   );

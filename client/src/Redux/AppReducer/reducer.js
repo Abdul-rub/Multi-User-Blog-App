@@ -28,7 +28,7 @@ export const reducer = (state = initial, action) => {
     case types.ADD_USER_BLOG_REQUEST:
       return { ...state, isLoading: true };
     case types.ADD_USER_BLOG_SUCCESS:
-      return { ...state, isLoading: false, userblog: payload, data: payload };
+      return { ...state, isLoading: false }
     case types.ADD_USER_BLOG_FAILURE:
       return { ...state, isError: true, userblog: [] };
 
