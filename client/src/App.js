@@ -10,6 +10,8 @@ import { useDispatch, useSelector } from "react-redux";
 import Signup from "./components/Signup";
 import { useEffect } from "react";
 import { handleLogin } from "./Redux/AuthReducer/action";
+import Error from "./components/Error";
+
 
 function App() {
   const dispatch = useDispatch()
@@ -43,6 +45,7 @@ function App() {
             <Route path="/myblogs" element={<UserBlogs />} />
             <Route path="/myblogs/:id" element={<BlogDetails />} />
             <Route path="/blogs/add" element={<AddBlog />} />
+            <Route path="/error" element={<Error/>}/>
           </>
         )}
       </Routes>

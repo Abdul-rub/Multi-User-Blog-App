@@ -13,7 +13,6 @@ import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import axios from "axios";
 import { deleteRequest } from "../Redux/AppReducer/action";
 
 const BlogCard = ({ title, description, image, username, isUser, id }) => {

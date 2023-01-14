@@ -43,15 +43,6 @@ const BlogDetails = () => {
     })
   },[id])
 
-  //  const updateRequest = async ()=>{
-  //   const res = axios.put(`http://localhost:8080/blog/update/${id}`,{
-  //     title : inputs.title,
-  //     description: inputs.description
-  //   }).catch((err)=>console.log(err))
-
-  //   const data = await res.data
-  //   return data
-  //  }
    
 
   const handleSubmit = (e) => {
