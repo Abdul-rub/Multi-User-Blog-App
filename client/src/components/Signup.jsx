@@ -44,11 +44,8 @@ const Signup = () => {
     if(isLoggedIn){
       alert("SignUp Successfull")
       navigate("/")
-    }else{
-      alert(`Error while Sign Up `)
     }
    },[isLoggedIn])
-
 
 
   return (

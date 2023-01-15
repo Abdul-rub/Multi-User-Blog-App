@@ -83,7 +83,7 @@ const Header = () => {
             <Button
               onClick={handleLogOut}
               LinkComponent={Link}
-              to="/login"
+              to="/"
               variant="contained"
               sx={{ margin: 1, borderRadius: 10 }}
             >
