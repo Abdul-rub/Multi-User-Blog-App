@@ -40,7 +40,7 @@ const AddBlog = () => {
     e.preventDefault();
     try {
       await dispatch(AddUserBlogs(inputs))
-      navigate("/blogs")
+      navigate("/")
     } catch (error) {
       console.error(error)
     }

@@ -48,7 +48,7 @@ const BlogDetails = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(EditUserBlog(id,inputs))
-    .then(()=>navigate("/blogs"))
+    .then(()=>navigate("/"))
   };
 
 

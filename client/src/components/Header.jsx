@@ -37,7 +37,7 @@ const Header = () => {
       }}
     >
       <Toolbar>
-        <Typography variant="h4" >BlogApp</Typography>
+       <Link to={"/"} style={{textDecoration:"none", color:"white"}}> <Typography variant="h4">BlogApp</Typography></Link>
 
         {isLoggedIn ? (
           <Box display="flex" marginLeft={"auto"} marginRight={"auto"}>
@@ -46,7 +46,7 @@ const Header = () => {
               value={value}
               onChange={(e, val) => setValue(val)}
             >
-              <Tab LinkComponent={Link} to="/blogs" label="All Blogs" />
+              <Tab LinkComponent={Link} to="/" label="All Blogs" />
               <Tab LinkComponent={Link} to="/myblogs" label="My Blogs" />
               <Tab LinkComponent={Link} to="/blogs/add" label="Add Blog" />
             </Tabs>

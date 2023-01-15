@@ -15,6 +15,7 @@ import { useEffect } from "react";
 
 const Signup = () => {
   const isLoggedIn = useSelector((state) => state.AuthReducer.isAuth);
+  const isError = useSelector((state)=>state.AuthReducer.isError)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [inputs, setInputs] = useState({
@@ -33,7 +34,7 @@ const Signup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(handleSignUp(inputs));
+    dispatch(handleSignUp(inputs))
  
     // console.log(inputs);
   };
@@ -41,7 +42,10 @@ const Signup = () => {
 
    useEffect(()=>{
     if(isLoggedIn){
-      navigate("/blogs")
+      alert("SignUp Successfull")
+      navigate("/")
+    }else{
+      alert(`Error while Sign Up `)
     }
    },[isLoggedIn])
 

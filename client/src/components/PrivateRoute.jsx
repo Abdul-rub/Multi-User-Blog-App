@@ -6,7 +6,7 @@ const PrivateRoute = ({ children }) => {
   const navigate = useNavigate();
   let isLoggedIn = useSelector((state) => state.AuthReducer.isAuth);
   if (isLoggedIn) {
-    return navigate("/blogs");
+    return navigate("/");
   }
   return <div>{children}</div>;
 };

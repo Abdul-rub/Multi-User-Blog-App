@@ -17,7 +17,7 @@ import ErrorPage from "./components/Error";
 function App() {
   const dispatch = useDispatch();
   let isLoggedIn = useSelector((state) => state.AuthReducer.isAuth);
-  console.log(isLoggedIn, "Bye");
+  // console.log(isLoggedIn, "Bye");
 
   useEffect(() => {
     const accessToken = localStorage.getItem("userId");
@@ -37,12 +37,16 @@ function App() {
         <Header />
       </header>
       <Routes>
-      
-        <Route path="/login" element={<PrivateRoute><Login /></PrivateRoute>} />
+        <Route
+          path="/login"
+          element={
+            <PrivateRoute>
+              <Login />
+            </PrivateRoute>
+          }
+        />
         <Route path="/signup" element={<Signup />} />
-        
-
-        <Route path="/blogs" element={<Blogs />} />
+        <Route path="/" element={<Blogs />} />
         <Route path="/myblogs" element={<UserBlogs />} />
         <Route path="/myblogs/:id" element={<BlogDetails />} />
         <Route path="/blogs/add" element={<AddBlog />} />
